@@ -1,25 +1,40 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
+class Weather extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      temp: null,
+      windSpeed: null,
+      humidity: null,
+      sunrise: null,
+      sunset: null,
+    };
+  }
 
-const Weather = () => {
-  let [weather, setWeather] = useState("");
-  let [weatherData, setWeatherData] = useState([]);
-  const getWeather = async () => {
-    const toArray = [];
-    try {
-      const url =
-        '"https://api.openweathermap.org/data/2.5/weather?lat=59.334591&lon=18.063240&appid=3eb1a1c34acc6bf198b6097f19daa05c';
-      const res = await axios.get(url);
-      toArray.push(res.data);
-      setWeather(res.data.weather[0].main);
-      setWeatherData(toArray);
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  componentDidMount() {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=59.334591&lon=18.063240&appid=c28cdfebc7df40fe4615a8c45fc175c0`
+    )
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({
+          temp: data.main.temp,
+          windSpeed: data.wind.speed,
+          humidity: data.main.humidity,
+          sunrise: data.sys.sunrise,
+          sunset: data.sys.sunset,
+        })
+      );
+  }
 
-  return <div></div>;
-};
+  render() {
+    return (
+      <div>
+        <div>{this.state.temp}</div>
+        <div>{this.state.windSpeed}</div>
+      </div>
+    );
+  }
+}
 
 export default Weather;

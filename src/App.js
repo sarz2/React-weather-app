@@ -11,7 +11,7 @@ function App() {
       </header>
       <main>
         <Weather />
-        <Forecast />
+        {/* <Forecast /> */}
       </main>
       <footer>Page created by Sara</footer>
     </div>
