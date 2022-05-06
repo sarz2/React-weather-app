@@ -30,7 +30,7 @@ function App() {
       </header>
       <main>
         <Weather lat={lat} long={long} />
-        <Forecast lat={lat} long={long} />
+        {/* <Forecast lat={lat} long={long} /> */}
       </main>
       <footer>Page created by Sara</footer>
     </div>
