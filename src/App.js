@@ -8,6 +8,7 @@ function App() {
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+  const [unit, setUnit] = useState("metric");
 
   function fetchPosition() {
     window.navigator.geolocation.getCurrentPosition(
@@ -23,14 +24,24 @@ function App() {
     fetchPosition();
   });
 
+  const unitName = () => {
+    if (unit === "imperial") {
+      setUnit("metric");
+      return <div>Celcius</div>;
+    }
+    setUnit("imperial");
+    return <div>Fahrenheit</div>;
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <h1> U07 React Weather App</h1>
       </header>
       <main>
-        <Weather lat={lat} long={long} />
-        {/* <Forecast lat={lat} long={long} /> */}
+        <Weather lat={lat} long={long} unit={unit} />
+        <Forecast lat={lat} long={long} unit={unit} />
+        <button onClick={unitName}></button>
       </main>
       <footer>Page created by Sara</footer>
     </div>

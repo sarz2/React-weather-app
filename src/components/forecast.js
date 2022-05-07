@@ -4,7 +4,6 @@ import axios from "axios";
 const Forecast = (props) => {
   const [forecast, setForecast] = useState([]);
   const [date, setDate] = useState("");
-  const [unit, setUnit] = useState("metric");
   const appId = "e3f4c3ac9b20eb9eace376b2dd72bf27";
 
   useEffect(() => {
@@ -15,7 +14,7 @@ const Forecast = (props) => {
           params: {
             lat: props.lat,
             lon: props.long,
-            units: unit,
+            units: props.unit,
             appid: appId,
           },
         }
@@ -24,7 +23,7 @@ const Forecast = (props) => {
     };
     search();
     todaysDate();
-  }, [props.lat, props.long, unit]);
+  }, [props.lat, props.long, props.unit]);
 
   const renderedForecast = forecast.map((result) => {
     if (result.dt_txt.slice(0, -9) === date) {
@@ -47,19 +46,9 @@ const Forecast = (props) => {
     setDate(today);
   };
 
-  const unitName = () => {
-    if (unit === "imperial") {
-      setUnit("metric");
-      return <div>Celcius</div>;
-    }
-    setUnit("imperial");
-    return <div>Fahrenheit</div>;
-  };
-
   return (
     <div>
       <div>{renderedForecast}</div>
-      <button onClick={unitName}></button>
     </div>
   );
 };
