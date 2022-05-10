@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { IconDisplay } from "./IconDisplay";
 import axios from "axios";
+import "./forecast.css";
 
 const Forecast = (props) => {
   const [forecast, setForecast] = useState([]);
@@ -25,18 +27,30 @@ const Forecast = (props) => {
     todaysDate();
   }, [props.lat, props.long, props.unit]);
 
-  const renderedForecast = forecast.map((result) => {
-    if (result.dt_txt.slice(0, -9) === date) {
+  const slicedArray = forecast.slice(0, 5);
+
+  const renderedForecast = slicedArray.map((result) => {
+    return (
+      <div key={result.weather[0].id} className="hourlycontainer">
+        <h1>{result.dt_txt.slice(10, -3)}</h1>
+        <p>{result.main.temp}°</p>
+        {/* <IconDisplay description={result.weather[0].description}></IconDisplay> */}
+        <p>{result.wind.speed}m/s</p>
+        <p>{result.main.humidity}%</p>
+        <p>{result.weather[0].description}</p>
+      </div>
+    );
+  });
+
+  const renderedFutureForecast = forecast.map((result) => {
+    let weekday = getDayOfWeek(result.dt_txt.slice(0, -9));
+    if (result.dt_txt.slice(11) === "12:00:00") {
       return (
-        <>
-          <div key={result.weather.id}>{result.dt_txt}</div>
-          <div>{result.main.temp}</div>
-          <div>{result.wind.speed}</div>
-          <div>{result.main.humidity}</div>
-        </>
+        <div key={result.weather.id}>
+          <div>{weekday}</div>
+          <div>{result.main.temp}°</div>
+        </div>
       );
-    } else if (result.dt_txt.slice(11) === "12:00:00") {
-      return <div>{result.main.temp}</div>;
     }
     return "";
   });
@@ -46,9 +60,21 @@ const Forecast = (props) => {
     setDate(today);
   };
 
+  function getDayOfWeek(date) {
+    const dayOfWeek = new Date(date).getDay();
+    return isNaN(dayOfWeek)
+      ? null
+      : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][dayOfWeek];
+  }
+
   return (
     <div>
-      <div>{renderedForecast}</div>
+      <div className="bigwrapper">
+        <div className="container">{renderedForecast}</div>
+      </div>
+      <div className="bigwrapper">
+        <div className="container">{renderedFutureForecast}</div>
+      </div>
     </div>
   );
 };
