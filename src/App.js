@@ -2,13 +2,14 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import Weather from "./components/weather";
 import Forecast from "./components/forecast";
-import { IconDisplay } from "./components/IconDisplay";
+import background from "../src/image/nature.avif";
 
 function App() {
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [unit, setUnit] = useState("metric");
+  const [cityName, setCityName] = useState("");
 
   function fetchPosition() {
     window.navigator.geolocation.getCurrentPosition(
@@ -34,16 +35,14 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1> U07 React Weather App</h1>
-      </header>
+    <div className="App" style={{ backgroundImage: `url(${background})` }}>
       <main>
-        <Weather lat={lat} long={long} unit={unit} />
-        <Forecast lat={lat} long={long} unit={unit} />
-        <button onClick={unitName}></button>
+        <div>
+          <Weather lat={lat} long={long} unit={unit} />
+          <Forecast lat={lat} long={long} unit={unit} />
+          <button onClick={unitName}></button>
+        </div>
       </main>
-      <footer>Page created by Sara</footer>
     </div>
   );
 }
