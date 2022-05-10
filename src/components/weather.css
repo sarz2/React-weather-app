@@ -1,0 +1,31 @@
+
+.listcontainer{
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    height: 10vh;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.header {
+    font-weight: bold;
+}
+
+div.ui.header.temp{
+    font-size: 75px;
+    margin: 0;
+    padding: 0;
+}
+.weathercontainer{
+    display: flex;
+    justify-content: center;
+}
+
+.bigcontainer{
+    width: 80%;
+}

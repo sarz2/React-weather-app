@@ -1,0 +1,20 @@
+div.ui.card{
+    display: flex;
+    justify-items: center;
+    border: 1px solid black;
+    width: 80%;
+    list-style-type: none;
+    height: auto;
+}
+
+.iconcontainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+img{
+    height: 100px;
+    width: 100px;
+
+}

@@ -1,3 +1,4 @@
+import "./weather.css";
 import React, { useEffect, useState } from "react";
 import Forecast from "./forecast";
 import { IconDisplay } from "./IconDisplay";
@@ -13,8 +14,8 @@ const Weather = ({ lat, long, unit }) => {
         "https://api.openweathermap.org/data/2.5/weather",
         {
           params: {
-            lat: lat,
-            lon: long,
+            lat: "59.334591",
+            lon: "18.06324",
             units: unit,
             appid: appId,
           },
@@ -26,41 +27,44 @@ const Weather = ({ lat, long, unit }) => {
   }, [lat, long, unit]);
 
   return (
-    <div>
+    <div className="weathercontainer">
       {weather && (
-        <div>
-          <div>Temperatur: {weather.main.temp} </div>
-          <div>Wind speed: {weather.wind.speed}</div>
-          <div>Humidity: {weather.main.humidity}</div>
-          <div>
-            Sunrise: {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}
+        <div className="bigcontainer">
+          <div className="ui header">{weather.name}</div>
+          <div className=" ui header temp">
+            {Math.round(weather.main.temp)}°{" "}
           </div>
-          <div>
-            Sunset: {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}
+          <IconDisplay
+            description={weather.weather[0].description}
+          ></IconDisplay>{" "}
+          <ul className="listcontainer">
+            <li>
+              {weather.wind.speed} m/s <br /> Wind Speed
+            </li>
+            <li>
+              {weather.main.humidity}% <br /> Humidity
+            </li>
+          </ul>
+          <div className="listcontainer">
+            <p>
+              {new Date(weather.sys.sunrise * 1000)
+                .toLocaleTimeString()
+                .slice(0, -3)}{" "}
+              <br />
+              Sunrise
+            </p>
+            <p>
+              {new Date(weather.sys.sunset * 1000)
+                .toLocaleTimeString()
+                .slice(0, -3)}{" "}
+              <br />
+              Sunset
+            </p>
           </div>
         </div>
       )}
     </div>
   );
-
-  // return (
-  //   <div>
-  //     {/* <IconDisplay description={weather.weather.description}> */}
-  //     {/* </IconDisplay> */}
-  //   </div>
-  // );
 };
-
-//   render() {
-//     return (
-//       <div>
-//         <IconDisplay description={this.state.description}>
-//           <div>{this.state.temp}</div>
-//           <div>{this.state.description}</div>
-//         </IconDisplay>
-//       </div>
-//     );
-//   }
-// }
 
 export default Weather;
