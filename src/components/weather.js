@@ -1,7 +1,6 @@
 import "./weather.css";
 import React, { useEffect, useState } from "react";
 import Forecast from "./forecast";
-import { IconDisplay } from "./IconDisplay";
 import axios from "axios";
 
 const Weather = ({ lat, long, unit }) => {
@@ -34,9 +33,10 @@ const Weather = ({ lat, long, unit }) => {
           <div className=" ui header temp">
             {Math.round(weather.main.temp)}°{" "}
           </div>
-          <IconDisplay
-            description={weather.weather[0].description}
-          ></IconDisplay>{" "}
+          <img
+            className="icon"
+            src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
+          ></img>
           <ul className="listcontainer">
             <li>
               {weather.wind.speed} m/s <br /> Wind Speed

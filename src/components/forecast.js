@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { IconDisplay } from "./IconDisplay";
 import axios from "axios";
 import "./forecast.css";
 
@@ -31,13 +30,18 @@ const Forecast = (props) => {
 
   const renderedForecast = slicedArray.map((result) => {
     return (
-      <div key={result.weather[0].id} className="hourlycontainer">
-        <h1>{result.dt_txt.slice(10, -3)}</h1>
-        <p>{result.main.temp}°</p>
-        {/* <IconDisplay description={result.weather[0].description}></IconDisplay> */}
-        <p>{result.wind.speed}m/s</p>
-        <p>{result.main.humidity}%</p>
-        <p>{result.weather[0].description}</p>
+      <div>
+        <div key={result.weather[0].id} className="hourlycontainer">
+          <h1>{result.dt_txt.slice(10, -3)}</h1>
+          <p>{result.main.temp}°</p>
+          <img
+            className="icon"
+            src={`http://openweathermap.org/img/wn/${result.weather[0].icon}.png`}
+          ></img>
+          <p>{result.wind.speed}m/s</p>
+          <p>{result.main.humidity}%</p>
+          <p>{result.weather[0].description}</p>
+        </div>
       </div>
     );
   });

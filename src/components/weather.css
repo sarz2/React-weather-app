@@ -1,10 +1,9 @@
 
+
 .listcontainer{
     display: flex;
     justify-content: space-evenly;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
     align-items: center;
     height: 10vh;
     border: 1px solid black;
@@ -28,4 +27,9 @@ div.ui.header.temp{
 
 .bigcontainer{
     width: 80%;
+}
+
+.icon{
+    height: 100px;
+    width: 100px;
 }
