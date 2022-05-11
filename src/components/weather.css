@@ -6,13 +6,15 @@
     list-style-type: none;
     align-items: center;
     height: 10vh;
-    border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 20px;
     margin-top: 10px;
+    background-color: rgba(140, 214, 209, 0.8);
 }
 
 .header {
     font-weight: bold;
+    margin-top: 30px;
+    font-size: xx-large;
 }
 
 div.ui.header.temp{
@@ -26,10 +28,13 @@ div.ui.header.temp{
 }
 
 .bigcontainer{
-    width: 80%;
+    width: 50%;
 }
 
 .icon{
     height: 100px;
     width: 100px;
 }
+
+.text{
+    font-family: 'Roboto', sans-serif;}

@@ -13,3 +13,19 @@
   background-image: url('https://unsplash.com/photos/lsoogGC_5dg');
 }
 
+button{
+  display:inline-block;
+  height: 5vh;
+  background-color: rgba(223, 206, 110, 0.8);
+  border-radius: 15px;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  margin-top: 20px;
+  padding:  0.35em 1.2em
+
+}
+
+button:hover{
+background-color:rgba(201, 186, 100, 0.8) ;
+}

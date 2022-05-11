@@ -6,9 +6,11 @@
     width: 80%;
     align-items: center;
     height: auto;
-    border: 1px solid black;
     border-radius: 20px;
     margin-top: 10px;
+    background-color: rgba(140, 214, 209, 0.8);
+    margin-bottom: 30px;;
+
 
 
 }

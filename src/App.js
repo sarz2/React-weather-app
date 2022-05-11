@@ -39,8 +39,14 @@ function App() {
       <main>
         <div>
           <Weather lat={lat} long={long} unit={unit} />
+          <div>
+            {unit === "metric" ? (
+              <button onClick={unitName}>Change to Fahrenheit</button>
+            ) : (
+              <button onClick={unitName}>Change to Celsius</button>
+            )}
+          </div>
           <Forecast lat={lat} long={long} unit={unit} />
-          <button onClick={unitName}></button>
         </div>
       </main>
     </div>

@@ -13,8 +13,8 @@ const Weather = ({ lat, long, unit }) => {
         "https://api.openweathermap.org/data/2.5/weather",
         {
           params: {
-            lat: "59.334591",
-            lon: "18.06324",
+            lat: lat,
+            lon: long,
             units: unit,
             appid: appId,
           },
@@ -29,8 +29,8 @@ const Weather = ({ lat, long, unit }) => {
     <div className="weathercontainer">
       {weather && (
         <div className="bigcontainer">
-          <div className="ui header">{weather.name}</div>
-          <div className=" ui header temp">
+          <div className="header">{weather.name}</div>
+          <div className="ui header temp">
             {Math.round(weather.main.temp)}°{" "}
           </div>
           <img
@@ -38,22 +38,32 @@ const Weather = ({ lat, long, unit }) => {
             src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
           ></img>
           <ul className="listcontainer">
-            <li>
-              {weather.wind.speed} m/s <br /> Wind Speed
-            </li>
-            <li>
-              {weather.main.humidity}% <br /> Humidity
+            <div>
+              {unit === "metric" ? (
+                <li className="text">
+                  {Math.round(weather.wind.speed)} m/s <br /> <br /> Wind Speed
+                </li>
+              ) : (
+                <li className="text">
+                  {Math.round(weather.wind.speed)} mph <br /> <br /> Wind Speed
+                </li>
+              )}
+            </div>
+
+            <li className="text">
+              {weather.main.humidity}% <br /> <br />
+              Humidity
             </li>
           </ul>
           <div className="listcontainer">
-            <p>
+            <p className="text">
               {new Date(weather.sys.sunrise * 1000)
                 .toLocaleTimeString()
                 .slice(0, -3)}{" "}
               <br />
               Sunrise
             </p>
-            <p>
+            <p className="text">
               {new Date(weather.sys.sunset * 1000)
                 .toLocaleTimeString()
                 .slice(0, -3)}{" "}

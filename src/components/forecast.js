@@ -33,14 +33,19 @@ const Forecast = (props) => {
       <div>
         <div key={result.weather[0].id} className="hourlycontainer">
           <h1>{result.dt_txt.slice(10, -3)}</h1>
-          <p>{result.main.temp}°</p>
+          <p>{Math.round(result.main.temp)}°</p>
           <img
             className="icon"
             src={`http://openweathermap.org/img/wn/${result.weather[0].icon}.png`}
           ></img>
-          <p>{result.wind.speed}m/s</p>
+          <div>
+            {props.unit === "metric" ? (
+              <p>{Math.round(result.wind.speed)}m/s</p>
+            ) : (
+              <p>{Math.round(result.wind.speed)}mph</p>
+            )}
+          </div>
           <p>{result.main.humidity}%</p>
-          <p>{result.weather[0].description}</p>
         </div>
       </div>
     );
@@ -51,8 +56,12 @@ const Forecast = (props) => {
     if (result.dt_txt.slice(11) === "12:00:00") {
       return (
         <div key={result.weather.id}>
-          <div>{weekday}</div>
-          <div>{result.main.temp}°</div>
+          <h1>{weekday}</h1>
+          <div>{Math.round(result.main.temp)}°</div>
+          <img
+            className="icon"
+            src={`http://openweathermap.org/img/wn/${result.weather[0].icon}.png`}
+          ></img>{" "}
         </div>
       );
     }
