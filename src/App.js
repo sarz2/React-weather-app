@@ -7,18 +7,13 @@ import background from "../src/image/nature.avif";
 function App() {
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
-  const [errorMessage, setErrorMessage] = useState("");
   const [unit, setUnit] = useState("metric");
-  const [cityName, setCityName] = useState("");
 
   function fetchPosition() {
-    window.navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLat(position.coords.latitude);
-        setLong(position.coords.longitude);
-      },
-      (err) => setErrorMessage({ err })
-    );
+    window.navigator.geolocation.getCurrentPosition((position) => {
+      setLat(position.coords.latitude);
+      setLong(position.coords.longitude);
+    });
   }
 
   useEffect(() => {

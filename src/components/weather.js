@@ -1,6 +1,5 @@
 import "./weather.css";
 import React, { useEffect, useState } from "react";
-import Forecast from "./forecast";
 import axios from "axios";
 
 const Weather = ({ lat, long, unit }) => {
@@ -36,20 +35,18 @@ const Weather = ({ lat, long, unit }) => {
           <img
             className="icon"
             src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
+            alt={weather.weather[0].description}
           ></img>
           <ul className="listcontainer">
-            <div>
-              {unit === "metric" ? (
-                <li className="text">
-                  {Math.round(weather.wind.speed)} m/s <br /> <br /> Wind Speed
-                </li>
-              ) : (
-                <li className="text">
-                  {Math.round(weather.wind.speed)} mph <br /> <br /> Wind Speed
-                </li>
-              )}
-            </div>
-
+            {unit === "metric" ? (
+              <li className="text">
+                {Math.round(weather.wind.speed)} m/s <br /> <br /> Wind Speed
+              </li>
+            ) : (
+              <li className="text">
+                {Math.round(weather.wind.speed)} mph <br /> <br /> Wind Speed
+              </li>
+            )}
             <li className="text">
               {weather.main.humidity}% <br /> <br />
               Humidity

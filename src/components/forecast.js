@@ -4,7 +4,6 @@ import "./forecast.css";
 
 const Forecast = (props) => {
   const [forecast, setForecast] = useState([]);
-  const [date, setDate] = useState("");
   const appId = "e3f4c3ac9b20eb9eace376b2dd72bf27";
 
   useEffect(() => {
@@ -23,7 +22,6 @@ const Forecast = (props) => {
       setForecast(data.list);
     };
     search();
-    todaysDate();
   }, [props.lat, props.long, props.unit]);
 
   const slicedArray = forecast.slice(0, 5);
@@ -37,6 +35,7 @@ const Forecast = (props) => {
           <img
             className="icon"
             src={`http://openweathermap.org/img/wn/${result.weather[0].icon}.png`}
+            alt={result.weather[0].description}
           ></img>
           <div>
             {props.unit === "metric" ? (
@@ -61,17 +60,13 @@ const Forecast = (props) => {
           <img
             className="icon"
             src={`http://openweathermap.org/img/wn/${result.weather[0].icon}.png`}
+            alt={result.weather[0].description}
           ></img>{" "}
         </div>
       );
     }
     return "";
   });
-
-  let todaysDate = () => {
-    let today = new Date().toISOString().slice(0, 10);
-    setDate(today);
-  };
 
   function getDayOfWeek(date) {
     const dayOfWeek = new Date(date).getDay();
