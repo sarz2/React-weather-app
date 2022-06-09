@@ -9,12 +9,12 @@ function App() {
   const [long, setLong] = useState(0);
   const [unit, setUnit] = useState("metric");
 
-  function fetchPosition() {
+  const fetchPosition = () => {
     window.navigator.geolocation.getCurrentPosition((position) => {
       setLat(position.coords.latitude);
       setLong(position.coords.longitude);
     });
-  }
+  };
 
   useEffect(() => {
     fetchPosition();

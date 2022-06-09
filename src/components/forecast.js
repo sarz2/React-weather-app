@@ -4,7 +4,6 @@ import "./forecast.css";
 
 const Forecast = (props) => {
   const [forecast, setForecast] = useState([]);
-  const appId = "e3f4c3ac9b20eb9eace376b2dd72bf27";
 
   useEffect(() => {
     const search = async () => {
@@ -15,7 +14,7 @@ const Forecast = (props) => {
             lat: props.lat,
             lon: props.long,
             units: props.unit,
-            appid: appId,
+            appid: process.env.REACT_APP_API_KEY,
           },
         }
       );
@@ -26,10 +25,10 @@ const Forecast = (props) => {
 
   const slicedArray = forecast.slice(0, 5);
 
-  const renderedForecast = slicedArray.map((result) => {
+  const renderedForecast = slicedArray.map((result, _index) => {
     return (
       <div>
-        <div key={result.weather[0].id} className="hourlycontainer">
+        <div key={_index} className="hourlycontainer">
           <h1>{result.dt_txt.slice(10, -3)}</h1>
           <p>{Math.round(result.main.temp)}°</p>
           <img
@@ -50,11 +49,11 @@ const Forecast = (props) => {
     );
   });
 
-  const renderedFutureForecast = forecast.map((result) => {
+  const renderedFutureForecast = forecast.map((result, _index) => {
     let weekday = getDayOfWeek(result.dt_txt.slice(0, -9));
     if (result.dt_txt.slice(11) === "12:00:00") {
       return (
-        <div key={result.weather.id}>
+        <div key={_index}>
           <h1>{weekday}</h1>
           <div>{Math.round(result.main.temp)}°</div>
           <img

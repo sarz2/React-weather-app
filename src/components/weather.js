@@ -4,7 +4,6 @@ import axios from "axios";
 
 const Weather = ({ lat, long, unit }) => {
   const [weather, setWeather] = useState();
-  const appId = "e3f4c3ac9b20eb9eace376b2dd72bf27";
 
   useEffect(() => {
     const search = async () => {
@@ -15,7 +14,7 @@ const Weather = ({ lat, long, unit }) => {
             lat: lat,
             lon: long,
             units: unit,
-            appid: appId,
+            appid: process.env.REACT_APP_API_KEY,
           },
         }
       );
