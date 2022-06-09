@@ -3,6 +3,12 @@
 This project is a weather app created with React. 
 ## Available Scripts
 
+### Live site
+
+You can find live version here: [Weather-App](https://deft-gecko-7e782c.netlify.app/)
+
+## Install
+
 In the project director begin with running:
 
 ### `npm install`
